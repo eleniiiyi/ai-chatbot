@@ -1,14 +1,21 @@
 const chat = document.getElementById("chat");
 const promptInput = document.getElementById("prompt");
 const sendBtn = document.getElementById("sendBtn");
+const clearBtn = document.getElementById("clearBtn");
 
 const API_URL =
     "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions";
-const API_KEY = "Add your api key here please";
 
 let conversation = [];
 
 sendBtn.addEventListener("click", sendMessage);
+clearBtn.addEventListener("click", clearChat);
+
+promptInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    sendMessage();
+  }
+});
 
 async function sendMessage() {
     // Get the user's message
@@ -44,7 +51,7 @@ async function sendMessage() {
 
     chat.innerHTML += `
         <div id="loading" class="message ai">
-            Thinking...
+             Thinking...
         </div>
     `;
 
@@ -77,9 +84,10 @@ async function sendMessage() {
         const formattedMessage = marked.parse(aiMessage);
 
         chat.innerHTML += `
+        <div class="AI-response"><div class="aiIcon"><img src="images/AI icon2.png" alt="AI"></div>
             <div class="message ai">
-                ${formattedMessage}
-            </div>
+               ${formattedMessage}
+            </div></div>
         `;
 
         // Add AI response to conversation
@@ -102,9 +110,15 @@ async function sendMessage() {
         // Show error
 
         chat.innerHTML += `
+        <div class="AI-response"><div class="aiIcon"><img src="images/AI icon2.png" alt="AI"></div>
             <div class="message ai">
-                Sorry, something went wrong.
-            </div>
+                 Sorry, something went wrong.
+            </div></div>
         `;
     }
+}
+
+function clearChat() {
+    chat.innerHTML = "";
+    conversation = [];
 }

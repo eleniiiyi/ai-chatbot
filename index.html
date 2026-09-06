@@ -9,20 +9,26 @@
         <link rel="stylesheet" href="style.css" />
     </head>
 
+     <!--Main chat area-->
+
     <body>
         <div class="container">
-            <h1>AI Chat</h1>
+            <div class="main-header">
+                <h1>AI Chat</h1>
+                <button id="clearBtn"><img id="bin-icon" src="images/bin-icon.png" alt="bin-icon">Clear Chat</button>
+            </div>
 
             <div id="chat">
                 <!-- Messages will appear here -->
             </div>
 
-            <div class="input-area">
+           <div class="inputContainer"><div class="input"> <div class="input-area">
                 <input type="text" id="prompt" placeholder="Ask something..." />
 
                 <button id="sendBtn">Send</button>
-            </div>
+            </div></div></div>
         </div>
+    
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <script src="script.js"></script>
     </body>
